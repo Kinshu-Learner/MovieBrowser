@@ -1,25 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import MainMovieCard from "./components/MainMovieCard";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from 'react-router-dom';
+import MovieSummary from "./components/MovieSummary";
 
-function App() {
+const App = () => {
+
+  const [movies, setMovies] = useState([])
+
+  useEffect(() => {
+    const fetchmo = async () => {
+      const allMoviesFetch = await fetch("https://api.tvmaze.com/search/shows?q=all");
+      const allMovies = await allMoviesFetch.json();
+
+      setMovies(allMovies);
+    }
+    fetchmo();
+  }, []);
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+
+      <Routes>
+
+        <Route path="/" element={
+          <div className="App">
+
+
+            <div className=" flex items-center flex-col">
+
+              {movies.map((movie) => (
+                <div className="flex flex-col w-full px-10 justify-center max-w-6xl">
+                  <MainMovieCard movie={movie} />
+                </div>
+              ))}
+
+            </div>
+
+          </div>
+        } />
+
+        <Route path={`/summary/:name`} element={<MovieSummary />} />
+
+      </Routes>
+
+    </Router>)
 }
 
 export default App;
