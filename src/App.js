@@ -41,7 +41,7 @@ const App = () => {
 
               <div className="mt-10 space-x-2">
                 <input onChange={handleOnChange} type="text" placeholder="Search movies/shows" className="w-64 md:w-96 text-xl py-1 px-2 rounded focus:outline-none" />
-                <button onClick={handleSearch} className="bg-yellow-300 rounded-md text-xl font-bold py-1 px-4">
+                <button onClick={handleSearch} className="bg-yellow-300 rounded-md text-xl font-bold py-1 px-4 hover:bg-yellow-200">
                   Search
                 </button>
               </div>
