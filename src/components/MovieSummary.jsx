@@ -15,7 +15,7 @@ const MovieSummary = () => {
             setShow(fullS);
         }
         fetchFullshow();
-    }, []);
+    });
 
     return (
         <div className='flex flex-col md:flex-row mt-10 bg-indigo-300 rounded-lg'>
